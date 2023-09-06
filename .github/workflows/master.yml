@@ -16,7 +16,7 @@ jobs:
     - uses: convictional/trigger-workflow-and-wait@v1.6.1
       with: 
         owner: sushantAtwork
-        repo: front_end_trigger
+        repo: back_end_trigger
         github_token: ${{ secrets.TEST_REPO }}
         workflow_file_name: master.yml
         ref: master
