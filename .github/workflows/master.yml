@@ -18,7 +18,7 @@ jobs:
       with: 
         owner: sushantAtwork
         repo: back_end_trigger
-        github_token: ${{ secrets.TEST_REPO }}
+        github_token: ${{ secrets.TEST_TOKEN }}
         workflow_file_name: master.yml
         ref: master
     - name : Deploy web app
