@@ -15,7 +15,8 @@ jobs:
           echo "Build web App"
           sleep 10s
 
-      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+      # - uses: convictional/trigger-workflow-and-wait@v1.6.5
+      - uses: peter-evans/repository-dispatch@v2
         with:
           owner: sushantAtwork
           repo: back_end_trigger
