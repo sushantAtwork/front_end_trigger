@@ -24,7 +24,7 @@ jobs:
           repo: back_end_trigger
           github_token: ${{ secrets.TEST_REPO }}
           workflow_file_name: master.yml
-          trigger_workflow: true
+          # trigger_workflow: true
           ref: main
 
       - name: Deploy web app
