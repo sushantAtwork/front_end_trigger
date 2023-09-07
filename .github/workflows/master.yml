@@ -16,15 +16,21 @@ jobs:
           sleep 10s
 
       # - uses: convictional/trigger-workflow-and-wait@v1.6.5
-      - uses: peter-evans/repository-dispatch@v2
+      #   with:
+      #     owner: sushantAtwork
+      #     repo: back_end_trigger
+      #     github_token: ${{ secrets.TEST_REPO }}
+      #     workflow_file_name: master.yml
+      #     propagate_failure: false
+      #     # trigger_workflow: true
+      #     ref: main
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
         with:
-          owner: sushantAtwork
-          repo: back_end_trigger
-          github_token: ${{ secrets.TEST_REPO }}
-          workflow_file_name: master.yml
-          propagate_failure: false
-          # trigger_workflow: true
-          ref: main
+          token: ${{ secrets.TEST_REPO }}
+          repository: sushantAtwork/back_end_trigger
+          event-type: my-event
 
       - name: Deploy web app
         run: |
