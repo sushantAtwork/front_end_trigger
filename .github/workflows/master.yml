@@ -1,7 +1,6 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - '*'
@@ -10,39 +9,24 @@ on:
       - '*'
 
 jobs:
-  update-readme:
+  build:
+    name: Run web app
     runs-on: ubuntu-latest
-
     steps:
-      - name: Use Node.js 18
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-      
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Install Dependencies
-        run: npm install @octokit/rest node-fetch
-
-      - name: Cat File dir
-        run: cd .github/workflows/ && ls -la
-        
-      - name: Run script to update README table
-        run: node .github/workflows/update-readme-table.js
-
-      - name: Update README
+      - name: Build web App
         run: |
-          dynamic_content="This content is dynamically generated."
+          echo "Build web App"
+          sleep 10s
 
-          sed -i "s/{{DYNAMIC_CONTENT}}/$dynamic_content/g" README.md
+      - uses: convictional/trigger-workflow-and-wait@v1.6.1
+        with:
+          owner: sushantAtwork
+          repo: back_end_trigger
+          github_token: ${{ secrets.TEST_REPO }}
+          workflow_file_name: master.yml
+          ref: main
 
-          git config --global user.name "sushantAtwork"
-          git config --global user.email "sushant.raj@netsmartz.net"
-
-          git add README.md
-          git commit -m "Update README table with new branch info"
-          git push origin HEAD:main
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.TEST_REPO }}
+      - name: Deploy web app
+        run: |
+          echo "Deploy web App"
+          sleep 10s
