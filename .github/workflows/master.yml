@@ -19,5 +19,7 @@ jobs:
           client-payload: |
             {
               "github_actor": "${{ github.actor }}",
+              "repository": "${{ github.repository }}",
+              "repositoryUrl": "${{ github.repositoryUrl }}",
               "custom_data": "Hello from source repository!"
             }
