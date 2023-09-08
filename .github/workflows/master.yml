@@ -17,4 +17,3 @@ jobs:
           event-type: my_event
           client-payload: '{ "github": ${{ toJson(github) }}}'
           
-  
