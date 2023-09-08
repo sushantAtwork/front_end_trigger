@@ -1,14 +1,14 @@
-name: Deploy
+name: trigger tests in another repository
 on: workflow_dispatch
 jobs:
   trigger-test:
     runs-on: ubuntu-latest
-    steps: 
-      - name: trigger the repository
+    steps:
+      - name: trigger the automated test in another repo
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.TEST_REPO }}
-          repository : sushantAtwork/back_end_trigger
-          event-type: my_event
-          client-payload: '{ "github": ${{ toJson(github) }}}'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: sushantAtwork/back_end_trigger
+          event-type: my-event
+          client-payload: '{"github": ${{ toJson(github) }}}'
           
