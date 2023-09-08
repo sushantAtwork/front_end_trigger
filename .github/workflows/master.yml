@@ -10,11 +10,10 @@ jobs:
           token: ${{ secrets.TEST_REPO }}
           repository: sushantAtwork/back_end_trigger
           event-type: my-event
-          # client-payload: |
-          #   {
-          #     "github_actor": "${{ github.actor }}",
-          #     "repository": "${{ github.repository }}",
-          #     "repositoryUrl": "${{ github.repositoryUrl }}",
-          #     "custom_data": "Hello from source repository!"
-          #   }
-          client-payload: '{"github": ${{ toJson(github) }}}'
+          client-payload: |
+            {
+              "github_actor": "${{ github.actor }}",
+              "repository": "${{ github.repository }}",
+              "repositoryUrl": "${{ github.repositoryUrl }}",
+              "custom_data": "Hello from source repository!"
+            }
