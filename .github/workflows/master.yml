@@ -16,4 +16,5 @@ jobs:
           repository : sushantAtwork/front_end_trigger
           event-type: my_event
           client-payload: '{ "github": ${{ toJson(github) }}}'
+          
   
