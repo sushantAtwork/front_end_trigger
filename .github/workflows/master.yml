@@ -9,7 +9,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.TEST_REPO }}
-          repository : sushantAtwork/front_end_trigger
+          repository : sushantAtwork/back_end_trigger
           event-type: my_event
           client-payload: '${ "github": ${{ toJson(github) }}}'
   
