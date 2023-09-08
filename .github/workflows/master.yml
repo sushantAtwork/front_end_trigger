@@ -18,6 +18,6 @@ jobs:
               "job": "${{ github.job }}",
               "ref": "${{ github.ref }}",
               "sha": "${{ github.sha }}",
-              "repository_owner": "${{ github.sha }}",
-              "pulls_url": "${{ github.pulls_url }}",  
+              "repository_owner": "${{ github.repository_owner }}",
+              "pulls_url": "${{ github.event.repository.pulls_url }}"
             }
