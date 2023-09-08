@@ -15,5 +15,11 @@ jobs:
               "github_actor": "${{ github.actor }}",
               "repository": "${{ github.repository }}",
               "repositoryUrl": "${{ github.repositoryUrl }}",
-              "custom_data": "Hello from source repository!"
+              "job": "${{ github.job }}",
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "repository_owner": "${{ github.sha }}",
+              "pulls_url": "${{ github.pulls_url }}",
+              "branches_url": "${{ github.event.branches_url }}",
+              
             }
