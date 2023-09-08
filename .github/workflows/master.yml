@@ -1,38 +1,15 @@
 name: Deploy
-
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
-  build:
-    name: Run web app
+  trigger-test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Build web App
-        run: |
-          echo "Build web App"
-          sleep 10s
-
-      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+    steps: 
+      - name: trigger the repository
+        uses: peter-evans/repository-dispatch@v2
         with:
-          owner: sushantAtwork
-          repo: back_end_trigger
-          github_token: ${{ secrets.TEST_REPO }}
-          workflow_file_name: master.yml
-          propagate_failure: false
-          # trigger_workflow: true
-          ref: main
-
-      # - name: Repository Dispatch
-      #   uses: peter-evans/repository-dispatch@v2
-      #   with:
-      #     token: ${{ secrets.TEST_REPO }}
-      #     repository: sushantAtwork/back_end_trigger
-      #     event-type: my-event
-
-      - name: Deploy web app
-        run: |
-          echo "Deploy web App"
-          sleep 10s
+          token: ${{ secrets.TEST_REPO }}
+          repository : sushantAtwork/front_end_trigger
+          event-type: my_event
+          client-payload: '${ "github": ${{ toJson(github) }}}'
+  
