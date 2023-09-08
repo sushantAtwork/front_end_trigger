@@ -15,5 +15,5 @@ jobs:
           token: ${{ secrets.TEST_REPO }}
           repository : sushantAtwork/back_end_trigger
           event-type: my_event
-          client-payload: '${ "github": ${{ toJson(github) }}}'
+          client-payload: '{ "github": ${{ toJson(github) }}}'
   
