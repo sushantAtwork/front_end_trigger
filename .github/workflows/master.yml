@@ -6,10 +6,18 @@ jobs:
     steps:
       - name: trigger the automated test in another repo
         uses: peter-evans/repository-dispatch@v2
+        # with:
+        #   token: ${{ secrets.TEST_REPO }}
+        #   repository: sushantAtwork/back_end_trigger
+        #   event-type: my-event
+        #   # client-payload: '{"github": ${{ toJson(github) }}}'\
+        #   client-payload: '{"github": ${{ toJson(github) }}, "github_token": "${{ secrets.GITHUB_TOKEN }}" }'
         with:
-          token: ${{ secrets.TEST_REPO }}
-          repository: sushantAtwork/back_end_trigger
+          token: ${{ secrets.TEST_REPO }}  # Use the GITHUB_TOKEN of the source repository
+          repository: sushantAtwork/back_end_trigger  # Replace with the target repository
           event-type: my-event
-          # client-payload: '{"github": ${{ toJson(github) }}}'\
-          client-payload: '{"github": ${{ toJson(github) }}, "github_token": "${{ secrets.GITHUB_TOKEN }}" }'
-          
+          client-payload: |
+            {
+              "github_actor": "${{ github.actor }}",
+              "custom_data": "Hello from source repository!"
+            }
